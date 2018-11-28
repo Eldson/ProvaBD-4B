@@ -9,12 +9,12 @@ package Visao.Consultar;
  *
  * @author aluno
  */
-public class ConsultarFuncionario extends javax.swing.JFrame {
+public class ConsultarProduto extends javax.swing.JFrame {
 
     /**
      * Creates new form ConsultarDVD
      */
-    public ConsultarFuncionario() {
+    public ConsultarProduto() {
         initComponents();
         //setSize(426, 181);
         setLocationRelativeTo(this);
@@ -57,7 +57,7 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
         jLabel6.setText(" E-Wall");
 
         jLabel7.setFont(new java.awt.Font("DejaVu Math TeX Gyre", 1, 18)); // NOI18N
-        jLabel7.setText("CONSULTAR FUNCIONÁRIO");
+        jLabel7.setText("CONSULTAR PRODUTO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,13 +84,13 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nome", "Email", "RG", "CPF", "Telefone", "Data Nacs", "Rua", "Numero", "Bairro", "CEP"
+                "Codigo", "Nome", "Tipo", "Marca", "Fornecedor", "Quantidade"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -218,14 +218,22 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -238,7 +246,7 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultarFuncionario().setVisible(true);
+                new ConsultarProduto().setVisible(true);
             }
         });
     }

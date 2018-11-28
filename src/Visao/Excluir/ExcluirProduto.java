@@ -9,12 +9,12 @@ package Visao.Excluir;
  *
  * @author aluno
  */
-public class ExcluirFuncionario extends javax.swing.JFrame {
+public class ExcluirProduto extends javax.swing.JFrame {
 
     /**
      * Creates new form ExcluirCategoria
      */
-    public ExcluirFuncionario() {
+    public ExcluirProduto() {
         initComponents();
         setSize(482, 256);
         setLocationRelativeTo(this);
@@ -48,7 +48,7 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
         jLabel1.setText(" E-Wall");
 
         jLabel21.setFont(new java.awt.Font("DejaVu Math TeX Gyre", 1, 18)); // NOI18N
-        jLabel21.setText("EXCLUIR FUNCIONÁRIO");
+        jLabel21.setText("EXCLUIR PRODUTO");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -174,14 +174,18 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ExcluirFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExcluirProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ExcluirFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExcluirProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ExcluirFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExcluirProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ExcluirFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExcluirProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -190,7 +194,7 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ExcluirFuncionario().setVisible(true);
+                new ExcluirProduto().setVisible(true);
             }
         });
     }
