@@ -5,6 +5,15 @@
  */
 package Visao.Alterar;
 
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import Modelo.Funcionario;
+import Principal.Menu;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aluno
@@ -18,6 +27,28 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         initComponents();
        // setSize(426, 181);
         setLocationRelativeTo(this);
+    }
+     private void InserirDados (int cod){
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        List<Funcionario> lista = new ArrayList<>();
+        lista = sql.CapturarFuncionario(cod);
+        
+        for ( Funcionario a : lista) {
+            jTF_Codigo.setText("" + a.getCodigo());
+            jTF_Nome.setText(a.getNome());
+            jTF_CEP.setText(a.getCEP());
+            jTF_Numero.setText("" + a.getNumero());
+            jTF_Bairro.setText(a.getBairro());
+            jTF_Email.setText(a.getEmail());
+            jTF_Telefone.setText(a.getTelefone());
+            jTF_Rua.setText(a.getRua());
+            jTF_Nascimento.setText(a.getNascimento());
+            jTF_RG.setText(a.getRG());
+            jTF_CPF.setText(a.getCPF());
+            
+        }
+      Conexao.FecharConexao(con);
     }
 
     /**
@@ -47,17 +78,17 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         jLabel135 = new javax.swing.JLabel();
         jLabel136 = new javax.swing.JLabel();
         jLabel137 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        jTF_Nome10 = new javax.swing.JTextField();
-        jTF_Rua10 = new javax.swing.JTextField();
-        jTF_Bairro10 = new javax.swing.JTextField();
-        jTF_Email10 = new javax.swing.JTextField();
-        jTF_Numero10 = new javax.swing.JTextField();
-        jTF_RG10 = new javax.swing.JFormattedTextField();
-        jTF_Telefone10 = new javax.swing.JFormattedTextField();
-        tfCPF10 = new javax.swing.JFormattedTextField();
-        jTF_Nascimento10 = new javax.swing.JFormattedTextField();
-        jTF_CEP10 = new javax.swing.JFormattedTextField();
+        jTF_Codigo = new javax.swing.JTextField();
+        jTF_Nome = new javax.swing.JTextField();
+        jTF_Rua = new javax.swing.JTextField();
+        jTF_Bairro = new javax.swing.JTextField();
+        jTF_Email = new javax.swing.JTextField();
+        jTF_Numero = new javax.swing.JTextField();
+        jTF_RG = new javax.swing.JFormattedTextField();
+        jTF_Telefone = new javax.swing.JFormattedTextField();
+        jTF_CPF = new javax.swing.JFormattedTextField();
+        jTF_Nascimento = new javax.swing.JFormattedTextField();
+        jTF_CEP = new javax.swing.JFormattedTextField();
         jTF_cod = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -94,12 +125,27 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(1, 62, 254));
 
         jButton32.setText("Limpar");
+        jButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton32ActionPerformed(evt);
+            }
+        });
 
         jButton33.setText("Alterar");
+        jButton33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton33ActionPerformed(evt);
+            }
+        });
 
         jButton34.setText("Cancelar");
+        jButton34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton34ActionPerformed(evt);
+            }
+        });
 
-        jLabel127.setText("Nº do Fincionario");
+        jLabel127.setText("Nº do Funcionario");
 
         jLabel128.setText("Nome:");
 
@@ -122,25 +168,30 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         jLabel137.setText("CEP:");
 
         try {
-            jTF_Telefone10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+            jTF_Telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            tfCPF10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            jTF_CPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jTF_CPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTF_CPFActionPerformed(evt);
+            }
+        });
+
+        try {
+            jTF_Nascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jTF_Nascimento10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            jTF_CEP10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            jTF_CEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -162,56 +213,56 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel128)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTF_Nome10))
+                        .addComponent(jTF_Nome))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel129)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTF_RG10, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTF_RG, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
                         .addComponent(jLabel134)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                        .addComponent(tfCPF10, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTF_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel130)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTF_Telefone10, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTF_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel135)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTF_Nascimento10))
+                        .addComponent(jTF_Nascimento))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel131)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTF_Rua10, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTF_Rua, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel136)
                         .addGap(38, 38, 38)
-                        .addComponent(jTF_Numero10))
+                        .addComponent(jTF_Numero))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel132)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTF_Bairro10, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTF_Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel137)
                         .addGap(18, 18, 18)
-                        .addComponent(jTF_CEP10))
+                        .addComponent(jTF_CEP))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel127)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTF_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTF_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel133)
                         .addGap(18, 18, 18)
-                        .addComponent(jTF_Email10)))
+                        .addComponent(jTF_Email)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(121, 121, 121)
+                .addGap(186, 186, 186)
                 .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addGap(49, 49, 49)
                 .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
+                .addGap(84, 84, 84)
                 .addComponent(jButton34)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -222,43 +273,43 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel127)
-                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTF_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTF_cod))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel128)
-                    .addComponent(jTF_Nome10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTF_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel129)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTF_RG10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTF_RG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel134)
-                        .addComponent(tfCPF10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTF_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTF_Telefone10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTF_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel130)
                     .addComponent(jLabel135)
-                    .addComponent(jTF_Nascimento10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTF_Nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel131)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTF_Rua10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTF_Rua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel136)
-                        .addComponent(jTF_Numero10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTF_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel132)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTF_Bairro10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTF_Bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel137)
-                        .addComponent(jTF_CEP10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTF_CEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel133)
-                    .addComponent(jTF_Email10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTF_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton32)
@@ -286,37 +337,114 @@ public class AlterarFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTF_codActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_codActionPerformed
-
+        
         String codigo = jTF_Codigo.getText();
-        Connection con = Conexao.AbrirConecao();
-        ClienteDAO sql = new ClienteDAO(con);
+        Connection con = Conexao.AbrirConexao();
+       FuncionarioDAO sql = new FuncionarioDAO(con);
         int cod = Integer.parseInt(codigo);
-        if (sql.Testar_Cliente(cod) == false) {
-            JOptionPane.showMessageDialog(null, "Condigo não Encontrado no Banco",
-                "Video Locadora", JOptionPane.ERROR_MESSAGE);
+        if (sql.Testar_Funcionario(cod) == false) {
+            JOptionPane.showMessageDialog(null, "Codigo não Encontrado no Banco",
+                    "E-Wall", JOptionPane.ERROR_MESSAGE);
             Conexao.FecharConexao(con);
-
+            
         }
         if (codigo.equals("")) {
-            JOptionPane.showMessageDialog(null, "Digite um codigo para atualizar","Video Locadora",
-                JOptionPane.WARNING_MESSAGE);
-
+            JOptionPane.showMessageDialog(null, "Digite um codigo para atualizar","E-Wall",
+                    JOptionPane.WARNING_MESSAGE);
+            
         }
-        jTF_Codigo.setText("");
-        jTF_Nome.setText("");
-        jTF_CEP.setText("");
-        jTF_Numero.setText("");
-        jTF_Bairro.setText("");
-        jTF_Email.setText("");
-        jTF_Telefone.setText("");
-        jTF_Rua.setText("");
-        jTF_Nascimento.setText("");
-        jTF_RG.setText("");
-        jTF_CPF.setText("");
+                jTF_Codigo.setText("");
+                jTF_Nome.setText("");
+                jTF_CEP.setText("");
+                jTF_Numero.setText("");
+                jTF_Bairro.setText("");
+                jTF_Email.setText("");
+                jTF_Telefone.setText("");
+                jTF_Rua.setText("");
+                jTF_Nascimento.setText("");
+                jTF_RG.setText("");
+                jTF_CPF.setText("");
+                
+                InserirDados(cod);
+                jTF_cod.setText("");
 
-        InserirDados(cod);
-        jTF_cod.setText("");
     }//GEN-LAST:event_jTF_codActionPerformed
+
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+                String codigo = jTF_Codigo.getText();
+                String nome = jTF_Nome.getText();
+                String nascimento = jTF_Nascimento.getText(); 
+                String cep = jTF_CEP.getText();
+                String rua = jTF_Rua.getText();
+                String numero = jTF_Numero.getText();
+                String bairro = jTF_Bairro.getText();
+                String email  = jTF_Email.getText();
+                String fone = jTF_Telefone.getText();
+                String cpf = jTF_CPF.getText();
+                String rg = jTF_RG.getText();  
+                
+           if (nome.equals("")) {
+               JOptionPane.showMessageDialog(null, "nenhum campo pode esatr vazio", 
+                       "E-Wall", JOptionPane.WARNING_MESSAGE);    
+        }else{
+           Connection con = Conexao.AbrirConexao();
+          FuncionarioDAO sql = new FuncionarioDAO(con);
+           int num = Integer.parseInt(numero);
+           int cod = Integer.parseInt(codigo);
+           Funcionario a = new Funcionario();
+       
+                a.setCodigo(cod);
+                a.setNome(nome);
+                a.setNascimento(nascimento);
+                a.setCEP(cep);
+                a.setRua(rua);
+                a.setNumero(num);
+                a.setBairro(bairro);
+                a.setEmail(email);
+                a.setTelefone(fone);
+                a.setCPF(cpf);
+                a.setRG(rg);
+              
+                sql.Alterar_Funcionario(a);
+                Conexao.FecharConexao(con);
+                
+                jTF_Nome.setText("");
+                jTF_CEP.setText("");
+                jTF_Numero.setText("");
+                jTF_Bairro.setText("");
+                jTF_Email.setText("");
+                jTF_Telefone.setText("");
+                jTF_Rua.setText("");
+                jTF_Nascimento.setText("");
+                jTF_RG.setText("");
+                jTF_CPF.setText("");
+                JOptionPane.showMessageDialog(null,"cadastro realizado com sucesso", 
+                        "E-Wall", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+           }
+  
+    }//GEN-LAST:event_jButton33ActionPerformed
+
+    private void jTF_CPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_CPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTF_CPFActionPerformed
+
+    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+         jTF_Nome.setText("");
+                jTF_CEP.setText("");
+                jTF_Numero.setText("");
+                jTF_Bairro.setText("");
+                jTF_Email.setText("");
+                jTF_Telefone.setText("");
+                jTF_Rua.setText("");
+                jTF_Nascimento.setText("");
+                jTF_RG.setText("");
+                jTF_CPF.setText("");
+    }//GEN-LAST:event_jButton32ActionPerformed
+
+    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
+        new Menu().setVisible(true);
+    }//GEN-LAST:event_jButton34ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,74 +483,13 @@ public class AlterarFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton30;
-    private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel100;
-    private javax.swing.JLabel jLabel101;
-    private javax.swing.JLabel jLabel102;
-    private javax.swing.JLabel jLabel103;
-    private javax.swing.JLabel jLabel104;
-    private javax.swing.JLabel jLabel105;
-    private javax.swing.JLabel jLabel106;
-    private javax.swing.JLabel jLabel107;
-    private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel109;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel110;
-    private javax.swing.JLabel jLabel111;
-    private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel113;
-    private javax.swing.JLabel jLabel114;
-    private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
-    private javax.swing.JLabel jLabel117;
-    private javax.swing.JLabel jLabel118;
-    private javax.swing.JLabel jLabel119;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel120;
-    private javax.swing.JLabel jLabel121;
-    private javax.swing.JLabel jLabel122;
-    private javax.swing.JLabel jLabel123;
-    private javax.swing.JLabel jLabel124;
-    private javax.swing.JLabel jLabel125;
-    private javax.swing.JLabel jLabel126;
     private javax.swing.JLabel jLabel127;
     private javax.swing.JLabel jLabel128;
     private javax.swing.JLabel jLabel129;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel130;
     private javax.swing.JLabel jLabel131;
     private javax.swing.JLabel jLabel132;
@@ -431,240 +498,22 @@ public class AlterarFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel135;
     private javax.swing.JLabel jLabel136;
     private javax.swing.JLabel jLabel137;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
-    private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel70;
-    private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
-    private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
-    private javax.swing.JLabel jLabel77;
-    private javax.swing.JLabel jLabel78;
-    private javax.swing.JLabel jLabel79;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel80;
-    private javax.swing.JLabel jLabel81;
-    private javax.swing.JLabel jLabel82;
-    private javax.swing.JLabel jLabel83;
-    private javax.swing.JLabel jLabel84;
-    private javax.swing.JLabel jLabel85;
-    private javax.swing.JLabel jLabel86;
-    private javax.swing.JLabel jLabel87;
-    private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel90;
-    private javax.swing.JLabel jLabel91;
-    private javax.swing.JLabel jLabel92;
-    private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
-    private javax.swing.JLabel jLabel95;
-    private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
-    private javax.swing.JLabel jLabel98;
-    private javax.swing.JLabel jLabel99;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTextField jTF_Bairro;
-    private javax.swing.JTextField jTF_Bairro1;
-    private javax.swing.JTextField jTF_Bairro10;
-    private javax.swing.JTextField jTF_Bairro2;
-    private javax.swing.JTextField jTF_Bairro3;
-    private javax.swing.JTextField jTF_Bairro4;
-    private javax.swing.JTextField jTF_Bairro5;
-    private javax.swing.JTextField jTF_Bairro6;
-    private javax.swing.JTextField jTF_Bairro7;
-    private javax.swing.JTextField jTF_Bairro8;
-    private javax.swing.JTextField jTF_Bairro9;
     private javax.swing.JFormattedTextField jTF_CEP;
-    private javax.swing.JFormattedTextField jTF_CEP1;
-    private javax.swing.JFormattedTextField jTF_CEP10;
-    private javax.swing.JFormattedTextField jTF_CEP2;
-    private javax.swing.JFormattedTextField jTF_CEP3;
-    private javax.swing.JFormattedTextField jTF_CEP4;
-    private javax.swing.JFormattedTextField jTF_CEP5;
-    private javax.swing.JFormattedTextField jTF_CEP6;
-    private javax.swing.JFormattedTextField jTF_CEP7;
-    private javax.swing.JFormattedTextField jTF_CEP8;
-    private javax.swing.JFormattedTextField jTF_CEP9;
+    private javax.swing.JFormattedTextField jTF_CPF;
+    private javax.swing.JTextField jTF_Codigo;
     private javax.swing.JTextField jTF_Email;
-    private javax.swing.JTextField jTF_Email1;
-    private javax.swing.JTextField jTF_Email10;
-    private javax.swing.JTextField jTF_Email2;
-    private javax.swing.JTextField jTF_Email3;
-    private javax.swing.JTextField jTF_Email4;
-    private javax.swing.JTextField jTF_Email5;
-    private javax.swing.JTextField jTF_Email6;
-    private javax.swing.JTextField jTF_Email7;
-    private javax.swing.JTextField jTF_Email8;
-    private javax.swing.JTextField jTF_Email9;
     private javax.swing.JFormattedTextField jTF_Nascimento;
-    private javax.swing.JFormattedTextField jTF_Nascimento1;
-    private javax.swing.JFormattedTextField jTF_Nascimento10;
-    private javax.swing.JFormattedTextField jTF_Nascimento2;
-    private javax.swing.JFormattedTextField jTF_Nascimento3;
-    private javax.swing.JFormattedTextField jTF_Nascimento4;
-    private javax.swing.JFormattedTextField jTF_Nascimento5;
-    private javax.swing.JFormattedTextField jTF_Nascimento6;
-    private javax.swing.JFormattedTextField jTF_Nascimento7;
-    private javax.swing.JFormattedTextField jTF_Nascimento8;
-    private javax.swing.JFormattedTextField jTF_Nascimento9;
     private javax.swing.JTextField jTF_Nome;
-    private javax.swing.JTextField jTF_Nome1;
-    private javax.swing.JTextField jTF_Nome10;
-    private javax.swing.JTextField jTF_Nome2;
-    private javax.swing.JTextField jTF_Nome3;
-    private javax.swing.JTextField jTF_Nome4;
-    private javax.swing.JTextField jTF_Nome5;
-    private javax.swing.JTextField jTF_Nome6;
-    private javax.swing.JTextField jTF_Nome7;
-    private javax.swing.JTextField jTF_Nome8;
-    private javax.swing.JTextField jTF_Nome9;
     private javax.swing.JTextField jTF_Numero;
-    private javax.swing.JTextField jTF_Numero1;
-    private javax.swing.JTextField jTF_Numero10;
-    private javax.swing.JTextField jTF_Numero2;
-    private javax.swing.JTextField jTF_Numero3;
-    private javax.swing.JTextField jTF_Numero4;
-    private javax.swing.JTextField jTF_Numero5;
-    private javax.swing.JTextField jTF_Numero6;
-    private javax.swing.JTextField jTF_Numero7;
-    private javax.swing.JTextField jTF_Numero8;
-    private javax.swing.JTextField jTF_Numero9;
     private javax.swing.JFormattedTextField jTF_RG;
-    private javax.swing.JFormattedTextField jTF_RG1;
-    private javax.swing.JFormattedTextField jTF_RG10;
-    private javax.swing.JFormattedTextField jTF_RG2;
-    private javax.swing.JFormattedTextField jTF_RG3;
-    private javax.swing.JFormattedTextField jTF_RG4;
-    private javax.swing.JFormattedTextField jTF_RG5;
-    private javax.swing.JFormattedTextField jTF_RG6;
-    private javax.swing.JFormattedTextField jTF_RG7;
-    private javax.swing.JFormattedTextField jTF_RG8;
-    private javax.swing.JFormattedTextField jTF_RG9;
     private javax.swing.JTextField jTF_Rua;
-    private javax.swing.JTextField jTF_Rua1;
-    private javax.swing.JTextField jTF_Rua10;
-    private javax.swing.JTextField jTF_Rua2;
-    private javax.swing.JTextField jTF_Rua3;
-    private javax.swing.JTextField jTF_Rua4;
-    private javax.swing.JTextField jTF_Rua5;
-    private javax.swing.JTextField jTF_Rua6;
-    private javax.swing.JTextField jTF_Rua7;
-    private javax.swing.JTextField jTF_Rua8;
-    private javax.swing.JTextField jTF_Rua9;
     private javax.swing.JFormattedTextField jTF_Telefone;
-    private javax.swing.JFormattedTextField jTF_Telefone1;
-    private javax.swing.JFormattedTextField jTF_Telefone10;
-    private javax.swing.JFormattedTextField jTF_Telefone2;
-    private javax.swing.JFormattedTextField jTF_Telefone3;
-    private javax.swing.JFormattedTextField jTF_Telefone4;
-    private javax.swing.JFormattedTextField jTF_Telefone5;
-    private javax.swing.JFormattedTextField jTF_Telefone6;
-    private javax.swing.JFormattedTextField jTF_Telefone7;
-    private javax.swing.JFormattedTextField jTF_Telefone8;
-    private javax.swing.JFormattedTextField jTF_Telefone9;
     private javax.swing.JButton jTF_cod;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JFormattedTextField tfCPF;
-    private javax.swing.JFormattedTextField tfCPF1;
-    private javax.swing.JFormattedTextField tfCPF10;
-    private javax.swing.JFormattedTextField tfCPF2;
-    private javax.swing.JFormattedTextField tfCPF3;
-    private javax.swing.JFormattedTextField tfCPF4;
-    private javax.swing.JFormattedTextField tfCPF5;
-    private javax.swing.JFormattedTextField tfCPF6;
-    private javax.swing.JFormattedTextField tfCPF7;
-    private javax.swing.JFormattedTextField tfCPF8;
-    private javax.swing.JFormattedTextField tfCPF9;
     // End of variables declaration//GEN-END:variables
+
+    
 }

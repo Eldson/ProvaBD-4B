@@ -18,7 +18,7 @@ public class Conexao {
         Connection con = null;
         try{
           Class.forName("com.mysql.jdbc.Driver");
-          String url = "jdbc:mysql://localhost/locadora";
+          String url = "jdbc:mysql://localhost/supermercado";
           con = DriverManager.getConnection(url,"root", "");  
         }catch (Exception e){
          JOptionPane.showMessageDialog(null,"Erro na conexao com o Banco",

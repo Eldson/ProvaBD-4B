@@ -10,26 +10,21 @@ package Modelo;
  * @author Elisson
  */
 public class Funcionario {
-            private int cod;
-            private String nome;
+          private int Codigo;
+            private String Nome;
+            private String Nascimento;
+            private String RG;
+            private String CPF;
+            private String Telefone;
+            private String Email;
+            private String Bairro;
+            private String Rua;
+            private int Numero;
+            private String CEP;
             private String login;
             private String senha;
 
-    public int getCod() {
-        return cod;
-    }
 
-    public void setCod(int cod) {
-        this.cod = cod;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getLogin() {
         return login;
@@ -47,5 +42,97 @@ public class Funcionario {
         this.senha = senha;
     }
             
+     
+
+    public int getCodigo() {
+        return Codigo;
+    }
+
+    public void setCodigo(int Codigo) {
+        this.Codigo = Codigo;
+    }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String Nome) {
+        this.Nome = Nome;
+    }
+
+    public String getNascimento() {
+        return Nascimento;
+    }
+
+    public void setNascimento(String Nascimento) {
+        this.Nascimento = Nascimento;
+    }
+
+    public String getRG() {
+        return RG;
+    }
+
+    public void setRG(String RG) {
+        this.RG = RG;
+    }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
+    }
+
+    public String getTelefone() {
+        return Telefone;
+    }
+
+    public void setTelefone(String Telefone) {
+        this.Telefone = Telefone;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    public String getBairro() {
+        return Bairro;
+    }
+
+    public void setBairro(String Bairro) {
+        this.Bairro = Bairro;
+    }
+
+    public String getRua() {
+        return Rua;
+    }
+
+    public void setRua(String Rua) {
+        this.Rua = Rua;
+    }
+
+    public int getNumero() {
+        return Numero;
+    }
+
+    public void setNumero(int Numero) {
+        this.Numero = Numero;
+    }
+
+    public String getCEP() {
+        return CEP;
+    }
+
+    public void setCEP(String CEP) {
+        this.CEP = CEP;
+    }
             
+            
+            
+                   
 }
