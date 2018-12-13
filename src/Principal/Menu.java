@@ -6,9 +6,13 @@
 package Principal;
 
 import Visao.Alterar.AlterarFuncionario;
+import Visao.Alterar.AlterarProduto;
 import Visao.Cadastro.CadastrarFuncionario;
+import Visao.Cadastro.CadastrarProduto;
 import Visao.Consultar.ConsultarFuncionario;
+import Visao.Consultar.ConsultarProduto;
 import Visao.Excluir.ExcluirFuncionario;
+import Visao.Excluir.ExcluirProduto;
 
 
 
@@ -53,11 +57,9 @@ public class Menu extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
 
         jInternalFrame1.setVisible(true);
 
@@ -179,7 +181,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu3.setText("Alterar");
 
-        jMenuItem13.setText("compra");
+        jMenuItem13.setText("produto");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);
@@ -195,19 +197,11 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem15);
 
-        jMenuItem18.setText("produto");
-        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem18ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem18);
-
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Excluir");
 
-        jMenuItem19.setText("Compra");
+        jMenuItem19.setText("Produto");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem19ActionPerformed(evt);
@@ -222,9 +216,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem21);
-
-        jMenu5.setText("Produto");
-        jMenu4.add(jMenu5);
 
         jMenuBar1.add(jMenu4);
 
@@ -249,15 +240,15 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadasClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadasClienteActionPerformed
-//       new CadastrarCliente().setVisible(true);
+ new CadastrarProduto().setVisible(true);//       
     }//GEN-LAST:event_cadasClienteActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-//        new AlterarCliente().setVisible(true);
+      new AlterarProduto().setVisible(true);//  
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-//         new ExcluirCliente().setVisible(true);
+       new ExcluirProduto().setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void cadasFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadasFuncionarioActionPerformed
@@ -269,23 +260,19 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-//         new ConsultarClassificacao().setVisible(true);
+new ConsultarProduto().setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-   new AlterarFuncionario().setVisible(true);
+     new AlterarFuncionario().setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
-    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-//        new AlterarClassificacao().setVisible(true);
-    }//GEN-LAST:event_jMenuItem18ActionPerformed
-
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
-   new ExcluirFuncionario().setVisible(true);
+      new ExcluirFuncionario().setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -336,12 +323,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem9;

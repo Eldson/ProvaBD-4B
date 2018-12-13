@@ -148,6 +148,8 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTF_Codigo" min="-2" pref="73" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="cod" min="-2" pref="73" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                           <Component id="jTF_cod" min="-2" pref="81" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -163,8 +165,8 @@
                   <Component id="jButton32" min="-2" pref="77" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Component id="jButton33" min="-2" pref="74" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                  <Component id="jButton34" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  <Component id="jButton34" min="-2" pref="92" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -178,7 +180,10 @@
                           <Component id="jLabel127" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTF_Codigo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jTF_cod" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="jTF_cod" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cod" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -230,7 +235,7 @@
                       <Component id="jButton33" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton34" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="96" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -254,7 +259,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton34">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="text" type="java.lang.String" value="sair"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton34ActionPerformed"/>
@@ -367,6 +372,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTF_codActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="cod">
         </Component>
       </SubComponents>
     </Container>

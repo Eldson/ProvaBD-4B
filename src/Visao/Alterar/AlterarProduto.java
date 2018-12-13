@@ -5,6 +5,15 @@
  */
 package Visao.Alterar;
 
+import DAO.Conexao;
+import DAO.ProdutoDAO;
+import Modelo.Produto;
+import Principal.Menu;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aluno
@@ -16,6 +25,23 @@ public class AlterarProduto extends javax.swing.JFrame {
      */
     public AlterarProduto() {
         initComponents();
+    }
+    private void InserirDados (int cod){
+        Connection con = Conexao.AbrirConexao();
+        ProdutoDAO sql = new ProdutoDAO(con);
+        List<Produto> lista = new ArrayList<>();
+        lista = sql.CapturarProduto(cod);
+        
+        for ( Produto a : lista) {
+            jTF_Codigo.setText("" + a.getCodigo());
+            jTF_Nome.setText(a.getNome());
+            jTF_Tipo.setText(a.getProduto());
+            jTF_Marca.setText(a.getMarca());
+            jTF_Fornecedor.setText(a.getFornecedor());
+            jTF_Quantidade.setText("" + a.getQuantidade());
+            
+        }
+      Conexao.FecharConexao(con);
     }
 
     /**
@@ -41,13 +67,13 @@ public class AlterarProduto extends javax.swing.JFrame {
         jLabel109 = new javax.swing.JLabel();
         jLabel111 = new javax.swing.JLabel();
         jLabel113 = new javax.swing.JLabel();
-        jTF_Nome10 = new javax.swing.JTextField();
-        jTF_Rua10 = new javax.swing.JTextField();
-        jTF_Bairro10 = new javax.swing.JTextField();
-        jTF_Numero10 = new javax.swing.JTextField();
-        jTF_RG10 = new javax.swing.JFormattedTextField();
+        jTF_Codigo = new javax.swing.JTextField();
+        jTF_Marca = new javax.swing.JTextField();
+        jTF_Fornecedor = new javax.swing.JTextField();
+        jTF_Quantidade = new javax.swing.JTextField();
+        jTF_Tipo = new javax.swing.JFormattedTextField();
         jLabel107 = new javax.swing.JLabel();
-        jTF_Nome11 = new javax.swing.JTextField();
+        jTF_Nome = new javax.swing.JTextField();
         jTF_cod = new javax.swing.JButton();
 
         jInternalFrame1.setVisible(true);
@@ -97,10 +123,25 @@ public class AlterarProduto extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(1, 62, 254));
 
         jButton31.setText("Limpar");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
 
-        jButton32.setText("Cadastar");
+        jButton32.setText("Alterar");
+        jButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton32ActionPerformed(evt);
+            }
+        });
 
-        jButton33.setText("Cancelar");
+        jButton33.setText("Sair");
+        jButton33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton33ActionPerformed(evt);
+            }
+        });
 
         jLabel105.setText("Nome do Produto");
 
@@ -112,9 +153,9 @@ public class AlterarProduto extends javax.swing.JFrame {
 
         jLabel113.setText("Quantidade");
 
-        jTF_Nome10.addActionListener(new java.awt.event.ActionListener() {
+        jTF_Codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTF_Nome10ActionPerformed(evt);
+                jTF_CodigoActionPerformed(evt);
             }
         });
 
@@ -141,39 +182,39 @@ public class AlterarProduto extends javax.swing.JFrame {
                                     .addGroup(jPanel12Layout.createSequentialGroup()
                                         .addComponent(jLabel107)
                                         .addGap(37, 37, 37)
-                                        .addComponent(jTF_Nome10, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTF_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(211, 211, 211)
                                         .addComponent(jTF_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel12Layout.createSequentialGroup()
                                         .addComponent(jLabel105)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTF_Nome11, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jTF_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(9, 9, 9)
                                 .addComponent(jLabel111))
                             .addGroup(jPanel12Layout.createSequentialGroup()
                                 .addComponent(jLabel109)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTF_RG10, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTF_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
                                     .addComponent(jLabel113)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTF_Numero10))
+                                    .addComponent(jTF_Quantidade))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
                                     .addComponent(jLabel108)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTF_Bairro10))
+                                    .addComponent(jTF_Fornecedor))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
                                     .addComponent(jLabel106)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jTF_Rua10, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jTF_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
-                        .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77)
-                        .addComponent(jButton33)))
+                        .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
@@ -182,31 +223,30 @@ public class AlterarProduto extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel107)
-                    .addComponent(jTF_Nome10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTF_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTF_cod))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel111))
                     .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTF_Nome11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTF_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel105)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTF_RG10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTF_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel109))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel106)
-                    .addComponent(jTF_Rua10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTF_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel108)
-                    .addComponent(jTF_Bairro10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTF_Fornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTF_Numero10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTF_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel113))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,10 +277,10 @@ public class AlterarProduto extends javax.swing.JFrame {
     private void jTF_codActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_codActionPerformed
 
         String codigo = jTF_Codigo.getText();
-        Connection con = Conexao.AbrirConecao();
-        ClienteDAO sql = new ClienteDAO(con);
+        Connection con = Conexao.AbrirConexao();
+        ProdutoDAO sql = new ProdutoDAO(con);
         int cod = Integer.parseInt(codigo);
-        if (sql.Testar_Cliente(cod) == false) {
+        if (sql.Testar_Produto(cod) == false) {
             JOptionPane.showMessageDialog(null, "Condigo não Encontrado no Banco",
                 "Video Locadora", JOptionPane.ERROR_MESSAGE);
             Conexao.FecharConexao(con);
@@ -253,23 +293,77 @@ public class AlterarProduto extends javax.swing.JFrame {
         }
         jTF_Codigo.setText("");
         jTF_Nome.setText("");
-        jTF_CEP.setText("");
-        jTF_Numero.setText("");
-        jTF_Bairro.setText("");
-        jTF_Email.setText("");
-        jTF_Telefone.setText("");
-        jTF_Rua.setText("");
-        jTF_Nascimento.setText("");
-        jTF_RG.setText("");
-        jTF_CPF.setText("");
+        jTF_Tipo.setText("");
+        jTF_Marca.setText("");
+        jTF_Fornecedor.setText("");
+        jTF_Quantidade.setText("");
+        
 
         InserirDados(cod);
         jTF_cod.setText("");
     }//GEN-LAST:event_jTF_codActionPerformed
 
-    private void jTF_Nome10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_Nome10ActionPerformed
+    private void jTF_CodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_CodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTF_Nome10ActionPerformed
+    }//GEN-LAST:event_jTF_CodigoActionPerformed
+
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+        jTF_Codigo.setText("");
+        jTF_Nome.setText("");
+        jTF_Tipo.setText("");
+        jTF_Marca.setText("");
+        jTF_Fornecedor.setText("");
+        jTF_Quantidade.setText("");
+    }//GEN-LAST:event_jButton31ActionPerformed
+
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+
+         dispose();
+    }//GEN-LAST:event_jButton33ActionPerformed
+
+    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+        String codigo = this.jTF_Codigo.getText();
+        String nome = jTF_Nome.getText();
+        String produto = jTF_Tipo.getText(); 
+        String marca = jTF_Marca.getText();
+        String fornecedor = jTF_Fornecedor.getText();
+        String quantidade = jTF_Quantidade.getText();
+                
+        if (nome.equals("")) {
+        
+            JOptionPane.showMessageDialog(null, "nenhum campo pode esatr vazio", 
+                       "E-Wall", JOptionPane.WARNING_MESSAGE);    
+        
+        }else{
+           Connection con = Conexao.AbrirConexao();
+           ProdutoDAO sql = new ProdutoDAO(con);
+           int num = Integer.parseInt(quantidade);
+           int cod = Integer.parseInt(codigo);
+           Produto a = new Produto();
+       
+            a.setNome(nome);
+            a.setProduto(produto);
+            a.setMarca(marca);
+            a.setFornecedor(fornecedor);
+            a.setQuantidade(num);
+            a.setCodigo(cod);
+            
+                sql.Alterar_Produto(a);
+                Conexao.FecharConexao(con);
+                
+                 jTF_Codigo.setText("");
+                 jTF_Nome.setText("");
+                 jTF_Tipo.setText("");
+                 jTF_Marca.setText("");
+                 jTF_Fornecedor.setText("");
+                 jTF_Quantidade.setText("");
+                JOptionPane.showMessageDialog(null,"alteração realizada com sucesso", 
+                        "E-Wall", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+           }
+  
+    
+    }//GEN-LAST:event_jButton32ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,12 +416,12 @@ public class AlterarProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JTextField jTF_Bairro10;
-    private javax.swing.JTextField jTF_Nome10;
-    private javax.swing.JTextField jTF_Nome11;
-    private javax.swing.JTextField jTF_Numero10;
-    private javax.swing.JFormattedTextField jTF_RG10;
-    private javax.swing.JTextField jTF_Rua10;
+    private javax.swing.JTextField jTF_Codigo;
+    private javax.swing.JTextField jTF_Fornecedor;
+    private javax.swing.JTextField jTF_Marca;
+    private javax.swing.JTextField jTF_Nome;
+    private javax.swing.JTextField jTF_Quantidade;
+    private javax.swing.JFormattedTextField jTF_Tipo;
     private javax.swing.JButton jTF_cod;
     // End of variables declaration//GEN-END:variables
 }

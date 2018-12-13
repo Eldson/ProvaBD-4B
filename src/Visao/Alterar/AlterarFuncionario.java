@@ -23,6 +23,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
     /**
      * Creates new form AlterarCategoria
      */
+    
     public AlterarFuncionario() {
         initComponents();
        // setSize(426, 181);
@@ -34,8 +35,9 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         List<Funcionario> lista = new ArrayList<>();
         lista = sql.CapturarFuncionario(cod);
         
-        for ( Funcionario a : lista) {
+        for (Funcionario a : lista) {
             jTF_Codigo.setText("" + a.getCodigo());
+            this.cod.setText(""+a.getCodigo());
             jTF_Nome.setText(a.getNome());
             jTF_CEP.setText(a.getCEP());
             jTF_Numero.setText("" + a.getNumero());
@@ -90,6 +92,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         jTF_Nascimento = new javax.swing.JFormattedTextField();
         jTF_CEP = new javax.swing.JFormattedTextField();
         jTF_cod = new javax.swing.JButton();
+        cod = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -138,7 +141,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jButton34.setText("Cancelar");
+        jButton34.setText("sair");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton34ActionPerformed(evt);
@@ -251,6 +254,8 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTF_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
                         .addComponent(jTF_cod, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel133)
@@ -262,8 +267,8 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                 .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
-                .addComponent(jButton34)
+                .addGap(57, 57, 57)
+                .addComponent(jButton34, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -274,7 +279,9 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel127)
                         .addComponent(jTF_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTF_cod))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTF_cod)
+                        .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel128)
@@ -315,7 +322,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                     .addComponent(jButton32)
                     .addComponent(jButton33)
                     .addComponent(jButton34))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -340,20 +347,21 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         
         String codigo = jTF_Codigo.getText();
         Connection con = Conexao.AbrirConexao();
-       FuncionarioDAO sql = new FuncionarioDAO(con);
+        FuncionarioDAO sql = new FuncionarioDAO(con);
         int cod = Integer.parseInt(codigo);
+        
         if (sql.Testar_Funcionario(cod) == false) {
             JOptionPane.showMessageDialog(null, "Codigo não Encontrado no Banco",
                     "E-Wall", JOptionPane.ERROR_MESSAGE);
             Conexao.FecharConexao(con);
             
-        }
+        } else
         if (codigo.equals("")) {
             JOptionPane.showMessageDialog(null, "Digite um codigo para atualizar","E-Wall",
                     JOptionPane.WARNING_MESSAGE);
             
-        }
-                jTF_Codigo.setText("");
+        } else{
+
                 jTF_Nome.setText("");
                 jTF_CEP.setText("");
                 jTF_Numero.setText("");
@@ -366,12 +374,12 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                 jTF_CPF.setText("");
                 
                 InserirDados(cod);
-                jTF_cod.setText("");
-
+                
+        }
     }//GEN-LAST:event_jTF_codActionPerformed
 
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
-                String codigo = jTF_Codigo.getText();
+                String codigo = this.cod.getText();
                 String nome = jTF_Nome.getText();
                 String nascimento = jTF_Nascimento.getText(); 
                 String cep = jTF_CEP.getText();
@@ -393,17 +401,18 @@ public class AlterarFuncionario extends javax.swing.JFrame {
            int cod = Integer.parseInt(codigo);
            Funcionario a = new Funcionario();
        
-                a.setCodigo(cod);
                 a.setNome(nome);
+                a.setEmail(email);
+                a.setRG(rg);
+                a.setCPF(cpf);
+                a.setTelefone(fone);
                 a.setNascimento(nascimento);
-                a.setCEP(cep);
                 a.setRua(rua);
                 a.setNumero(num);
                 a.setBairro(bairro);
-                a.setEmail(email);
-                a.setTelefone(fone);
-                a.setCPF(cpf);
-                a.setRG(rg);
+                a.setCEP(cep);
+                a.setCodigo(cod);
+               
               
                 sql.Alterar_Funcionario(a);
                 Conexao.FecharConexao(con);
@@ -418,7 +427,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                 jTF_Nascimento.setText("");
                 jTF_RG.setText("");
                 jTF_CPF.setText("");
-                JOptionPane.showMessageDialog(null,"cadastro realizado com sucesso", 
+                JOptionPane.showMessageDialog(null,"alteração realizada com sucesso", 
                         "E-Wall", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
            }
@@ -443,7 +452,8 @@ public class AlterarFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton32ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
-        new Menu().setVisible(true);
+        
+         dispose();
     }//GEN-LAST:event_jButton34ActionPerformed
 
     /**
@@ -483,6 +493,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cod;
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;

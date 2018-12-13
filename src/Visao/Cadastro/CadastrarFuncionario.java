@@ -8,6 +8,7 @@ package Visao.Cadastro;
 import DAO.Conexao;
 import DAO.FuncionarioDAO;
 import Modelo.Funcionario;
+import Principal.Menu;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author aluno
+ * @author aluno    
  */
 public class CadastrarFuncionario extends javax.swing.JFrame {
 
@@ -99,6 +100,11 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(1, 62, 254));
 
         jButton3.setText("Limpar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cadastrar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +113,12 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Cancelar");
+        jButton1.setText("Sair");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nome:");
 
@@ -203,11 +214,11 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(128, 128, 128)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
-                .addComponent(jButton1)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -274,21 +285,24 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-                String nome = jTF_Nome.getText();
-                String nascimento = jTF_Nascimento.getText(); 
-                String cep = jTF_CEP.getText();
-                String rua = jTF_Rua.getText();
-                String numero = jTF_Numero.getText();
-                String bairro = jTF_Bairro.getText();
-                String email  = jTF_Email.getText();
-                String fone = jTF_Telefone.getText();
-                String cpf = jTF_CPF.getText();
-                String rg = jTF_RG.getText();
-                
-                if (nome.equals("") || nascimento.equals("") || cep.equals("") 
-                        || rua.equals("") || numero.equals("") || bairro.equals("")
-                        || fone.equals("") || cpf.equals("") || rg.equals("")) {
-        JOptionPane.showMessageDialog(null,"nenhum campo pode estar vazio", 
+        
+        String nome = jTF_Nome.getText();
+        String email  = jTF_Email.getText();
+        String rg = jTF_RG.getText();
+        String cpf = jTF_CPF.getText();
+        String fone = jTF_Telefone.getText();
+        String nascimento = jTF_Nascimento.getText(); 
+        String rua = jTF_Rua.getText();
+        String numero = jTF_Numero.getText();
+        String bairro = jTF_Bairro.getText();
+        String cep = jTF_CEP.getText();
+        
+  
+                if (nome.equals("") || email.equals("") || rg.equals("") 
+                        || cpf.equals("") || fone.equals("") || nascimento.equals("")
+                        || rua.equals("") || numero.equals("") || bairro.equals("") || cep.equals("")) {
+        
+                    JOptionPane.showMessageDialog(null,"nenhum campo pode estar vazio", 
                 "E-Wall", JOptionPane.WARNING_MESSAGE);
             
         }else{
@@ -298,17 +312,18 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
                 Funcionario a = new Funcionario();
                 
                 a.setNome(nome);
+                a.setEmail(email);
+                a.setRG(rg);
+                a.setCPF(cpf);
+                a.setTelefone(fone);
                 a.setNascimento(nascimento);
-                a.setCEP(cep);
                 a.setRua(rua);
                 a.setNumero(n);
                 a.setBairro(bairro);
-                a.setEmail(email);
-                a.setTelefone(fone);
-                a.setCPF(cpf);
-                a.setRG(rg);
+                a.setCEP(cep);
+
               
-                sql.Inserir_Funcionario(a);
+              sql.Inserir_Funcionario(a);
               Conexao.FecharConexao(con);
 
                 
@@ -324,13 +339,31 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
                 jTF_RG.setText("");
                 jTF_CPF.setText("");
                 JOptionPane.showMessageDialog(null,"cadastro realizado com sucesso", "E-Wall",
-                        JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE);
                 dispose();
                 
                 
                 };
             
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+         dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      jTF_Nome.setText("");
+       jTF_Email.setText("");
+                jTF_CEP.setText("");
+                jTF_Numero.setText("");
+                jTF_Bairro.setText("");
+                jTF_Telefone.setText("");
+                jTF_Rua.setText("");
+                jTF_Nascimento.setText("");
+                jTF_RG.setText("");
+                jTF_CPF.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

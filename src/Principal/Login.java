@@ -7,6 +7,7 @@ package Principal;
 
 import DAO.Conexao;
 import DAO.FuncionarioDAO;
+import DAO.GerenteDAO;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
@@ -164,8 +165,8 @@ public class Login extends javax.swing.JFrame {
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         // TODO add your handling code here:
-        Connection con = Conexao.AbrirConexao();
-        FuncionarioDAO sql =  new FuncionarioDAO(con);
+         Connection con = Conexao.AbrirConexao();
+        GerenteDAO sql =  new GerenteDAO(con);
         String login = tfUsuario.getText();
         String senha = pfSenha.getText();
         if(login.equalsIgnoreCase("")|| senha.equalsIgnoreCase("")){
@@ -192,7 +193,7 @@ public class Login extends javax.swing.JFrame {
                     
                 }else {
                   JOptionPane.showMessageDialog(null, "Usuario ou senha Invalidos", 
-                        "Video Locadora", JOptionPane.ERROR_MESSAGE);
+                        "E-Wall", JOptionPane.ERROR_MESSAGE);
                   tfUsuario.setText("");
                   pfSenha.setText("");
 

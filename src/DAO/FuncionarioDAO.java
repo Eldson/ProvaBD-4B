@@ -54,9 +54,9 @@ import java.util.List;
                 ps.setString(3,a.getRG());
                 ps.setString(4,a.getCPF());
                 ps.setString(5,a.getTelefone());
-                 ps.setString(6,a.getNascimento());
-                 ps.setString(7,a.getRua());
-                  ps.setInt(8,a.getNumero());
+                ps.setString(6,a.getNascimento());
+                ps.setString(7,a.getRua());
+                ps.setInt(8,a.getNumero());
                 ps.setString(9,a.getBairro());
                 ps.setString(10,a.getCEP());
                
@@ -86,14 +86,14 @@ import java.util.List;
               Funcionario a = new Funcionario();
               a.setCodigo(rs.getInt(1));
               a.setNome(rs.getString(2));
-              a.setNascimento(rs.getString(3));
-              a.setRG(rs.getString(3));
-              a.setCPF(rs.getString(4));
-              a.setEmail(rs.getString(5));
+              a.setEmail(rs.getString(3));
+              a.setRG(rs.getString(4));
+              a.setCPF(rs.getString(5));
               a.setTelefone(rs.getString(6));
-              a.setBairro(rs.getString(8));
-              a.setRua(rs.getString(9));
-              a.setNumero(rs.getInt(10));
+              a.setNascimento(rs.getString(7));
+              a.setRua(rs.getString(8));
+              a.setNumero(rs.getInt(9));
+              a.setBairro(rs.getString(10));
               a.setCEP(rs.getString(11));
              
               lista.add(a);
@@ -105,13 +105,12 @@ import java.util.List;
    }catch (SQLException e){
    return null;
    }
-   
-   
-   
+     
    }
    
-  public List<Funcionario> Pesquisar_Nome_Funcionario(String nome){  
-  String sql = "select * from funcionario where nome LIKE '%"+ nome +"%'";
+   
+   public List<Funcionario> Pesquisar_Cod_Funcionario(int cod){
+     String sql = "select * from funcionario where cod = '"+cod+"'";
    List<Funcionario> lista = new ArrayList<>();
    try{
    PreparedStatement ps = getCon().prepareStatement(sql);
@@ -119,15 +118,18 @@ import java.util.List;
    
        if (rs != null) {
            while (rs.next()) {
-              Funcionario a = new Funcionario();
-              
+             Funcionario a = new Funcionario();
               a.setCodigo(rs.getInt(1));
               a.setNome(rs.getString(2));
-              a.setRG(rs.getString(3));
-              a.setCPF(rs.getString(4));
-              a.setTelefone(rs.getString(5));
-              a.setEmail(rs.getString(6));
-              
+              a.setEmail(rs.getString(3));
+              a.setRG(rs.getString(4));
+              a.setCPF(rs.getString(5));
+              a.setTelefone(rs.getString(6));
+              a.setNascimento(rs.getString(7));
+              a.setRua(rs.getString(8));
+              a.setNumero(rs.getInt(9));
+              a.setBairro(rs.getString(10));
+              a.setCEP(rs.getString(11));
              
               lista.add(a);
            }
@@ -139,10 +141,13 @@ import java.util.List;
    return null;
    }
   
+  
+  
   }
   
-   public List<Funcionario> Pesquisar_Cod_Funcionario(int cod){
-     String sql = "select idcod, nome,rg,cpf,telefone,email from cliente where idcod = '"+cod+"'";
+   public List<Funcionario> Pesquisar_Nome_Funcionario(String nome){
+   
+   String sql = "select * from funcionario where nome like '%"+nome+"%'";
    List<Funcionario> lista = new ArrayList<>();
    try{
    PreparedStatement ps = getCon().prepareStatement(sql);
@@ -150,13 +155,18 @@ import java.util.List;
    
        if (rs != null) {
            while (rs.next()) {
-             Funcionario a = new Funcionario();
+              Funcionario a = new Funcionario();
               a.setCodigo(rs.getInt(1));
               a.setNome(rs.getString(2));
-              a.setRG(rs.getString(3));
-              a.setCPF(rs.getString(4));
-              a.setTelefone(rs.getString(5));
-              a.setEmail(rs.getString(6));
+              a.setEmail(rs.getString(3));
+              a.setRG(rs.getString(4));
+              a.setCPF(rs.getString(5));
+              a.setTelefone(rs.getString(6));
+              a.setNascimento(rs.getString(7));
+              a.setRua(rs.getString(8));
+              a.setNumero(rs.getInt(9));
+              a.setBairro(rs.getString(10));
+              a.setCEP(rs.getString(11));
              
               lista.add(a);
            }
@@ -175,7 +185,7 @@ import java.util.List;
    public boolean Testar_Funcionario(int cod){
    boolean Resultado = false;
             try{
-                String sql = "select * from funcionario where idcod = "+cod+"";
+                String sql = "select * from funcionario where cod = "+cod+"";
                 PreparedStatement ps = getCon().prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
                 
@@ -193,7 +203,7 @@ import java.util.List;
    }
    
    public List<Funcionario> CapturarFuncionario(int cod){
-       String sql = "select * from funcionario where idcod ="+cod+"";
+       String sql = "select * from funcionario where cod = "+cod;
        List<Funcionario> lista = new ArrayList<>();
        try{
            PreparedStatement ps = getCon().prepareStatement(sql);
@@ -203,14 +213,14 @@ import java.util.List;
                   Funcionario a = new Funcionario();
                   a.setCodigo(rs.getInt(1));
                   a.setNome(rs.getString(2));
-                  a.setNascimento(rs.getString(3));
+                  a.setEmail(rs.getString(3));
                   a.setRG(rs.getString(4));
                   a.setCPF(rs.getString(5));
-                  a.setEmail(rs.getString(6));
-                  a.setTelefone(rs.getString(7));
-                  a.setBairro(rs.getString(8));
-                  a.setRua(rs.getString(9));
-                  a.setNumero(rs.getInt(10));
+                  a.setTelefone(rs.getString(6));
+                  a.setNascimento(rs.getString(7));
+                  a.setRua(rs.getString(8));
+                  a.setNumero(rs.getInt(9));
+                  a.setBairro(rs.getString(10));
                   a.setCEP(rs.getString(11));
                   lista.add(a);
                   
@@ -226,22 +236,34 @@ import java.util.List;
    }
    
    public String Alterar_Funcionario (Funcionario a){
-    String sql = "update funcionario set nome = ? ,data_nasc = ? ,rg = ? " 
-            +",cpf = ? ,email = ? ,telefone = ? ,bairro = ? ,rua = ?" 
-            +",numero = ? ,cep = ? where idcliente = ?";
+    String sql = "update funcionario set nome = ? ,email = ? ,rg = ? " 
+            +",cpf = ? ,telefone = ? ,data_nascimento = ? ,rua = ? ,bairro = ?"  
+            +",numero = ? ,cep = ? where cod = ?";
     try{
     PreparedStatement ps = getCon().prepareStatement(sql);
                 ps.setString(1,a.getNome());
-                ps.setString(2,a.getNascimento());
+                ps.setString(2,a.getEmail());
                 ps.setString(3,a.getRG());
                 ps.setString(4,a.getCPF());
-                ps.setString(5,a.getEmail());
-                ps.setString(6,a.getTelefone());
-                ps.setString(7,a.getBairro());
-                ps.setString(8,a.getRua());
+                 ps.setString(5,a.getTelefone());
+                ps.setString(6,a.getNascimento());
+                ps.setString(7,a.getRua());
+                ps.setString(8,a.getBairro());
                 ps.setInt(9,a.getNumero());
                 ps.setString(10,a.getCEP());
                 ps.setInt(11, a.getCodigo());
+                
+                
+//                  a.setNome(nome);
+//                a.setEmail(email);
+//                a.setRG(rg);
+//                a.setCPF(cpf);
+//                a.setTelefone(fone);
+//                a.setNascimento(nascimento);
+//                a.setRua(rua);
+//                a.setNumero(n);
+//                a.setBairro(bairro);
+//                a.setCEP(cep);
             if (ps.executeUpdate () > 0) {
                 return "Atualizado com sucesso.";      
         }else{
@@ -275,8 +297,9 @@ import java.util.List;
           return null;
      }
    }
+   
  public List<Funcionario> ConsultaCodigoFuncionario(String nome){
-     String sql = "select idcod from funcionario where nome = '"+nome+"'";
+     String sql = "select cod from funcionario where nome = '"+nome+"'";
      List<Funcionario> lista = new ArrayList<>();
      try{
      PreparedStatement ps = getCon().prepareStatement(sql);
@@ -298,7 +321,7 @@ import java.util.List;
    }
    
  public String Excluir_Funcionario(Funcionario a){
-   String sql = "delete from funcionario where idcod = ? and nome = ? ";
+   String sql = "delete from funcionario where cod = ? and nome = ? ";
    try{
      PreparedStatement ps = getCon().prepareStatement(sql);
      ps.setInt(1, a.getCodigo());

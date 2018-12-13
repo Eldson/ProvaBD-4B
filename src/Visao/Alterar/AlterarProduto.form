@@ -129,14 +129,14 @@
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel107" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                          <Component id="jTF_Nome10" min="-2" pref="105" max="-2" attributes="0"/>
+                                          <Component id="jTF_Codigo" min="-2" pref="105" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
                                           <Component id="jTF_cod" min="-2" pref="81" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel105" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTF_Nome11" min="-2" pref="348" max="-2" attributes="0"/>
+                                          <Component id="jTF_Nome" min="-2" pref="348" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
@@ -145,34 +145,34 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel109" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTF_RG10" min="-2" pref="360" max="-2" attributes="0"/>
+                                  <Component id="jTF_Tipo" min="-2" pref="360" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel113" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTF_Numero10" max="32767" attributes="0"/>
+                                      <Component id="jTF_Quantidade" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel108" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTF_Bairro10" max="32767" attributes="0"/>
+                                      <Component id="jTF_Fornecedor" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel106" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jTF_Rua10" min="-2" pref="422" max="-2" attributes="0"/>
+                                      <Component id="jTF_Marca" min="-2" pref="422" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                          <Component id="jButton31" min="-2" pref="77" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                          <Component id="jButton32" min="-2" pref="74" max="-2" attributes="0"/>
+                          <Component id="jButton31" min="-2" pref="89" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                          <Component id="jButton32" min="-2" pref="86" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                          <Component id="jButton33" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton33" min="-2" pref="73" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -185,38 +185,37 @@
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel107" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTF_Nome10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTF_Codigo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTF_cod" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="jLabel111" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTF_Nome11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTF_Nome" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel105" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTF_RG10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTF_Tipo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel109" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel106" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTF_Rua10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTF_Marca" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel108" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTF_Bairro10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTF_Fornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTF_Numero10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTF_Quantidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel113" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -235,16 +234,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Limpar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton31ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton32">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cadastar"/>
+            <Property name="text" type="java.lang.String" value="Alterar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton32ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton33">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton33ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel105">
           <Properties>
@@ -273,25 +281,25 @@
             <Property name="text" type="java.lang.String" value="Quantidade"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTF_Nome10">
+        <Component class="javax.swing.JTextField" name="jTF_Codigo">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTF_Nome10ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTF_CodigoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTF_Rua10">
+        <Component class="javax.swing.JTextField" name="jTF_Marca">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTF_Bairro10">
+        <Component class="javax.swing.JTextField" name="jTF_Fornecedor">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTF_Numero10">
+        <Component class="javax.swing.JTextField" name="jTF_Quantidade">
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jTF_RG10">
+        <Component class="javax.swing.JFormattedTextField" name="jTF_Tipo">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel107">
           <Properties>
             <Property name="text" type="java.lang.String" value="Codigo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTF_Nome11">
+        <Component class="javax.swing.JTextField" name="jTF_Nome">
         </Component>
         <Component class="javax.swing.JButton" name="jTF_cod">
           <Properties>

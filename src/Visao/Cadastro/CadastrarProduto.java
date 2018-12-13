@@ -5,6 +5,13 @@
  */
 package Visao.Cadastro;
 
+import DAO.Conexao;
+import DAO.ProdutoDAO;
+import Modelo.Produto;
+import Principal.Menu;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aluno
@@ -40,11 +47,11 @@ public class CadastrarProduto extends javax.swing.JFrame {
         jLabel109 = new javax.swing.JLabel();
         jLabel111 = new javax.swing.JLabel();
         jLabel113 = new javax.swing.JLabel();
-        jTF_Nome10 = new javax.swing.JTextField();
-        jTF_Rua10 = new javax.swing.JTextField();
-        jTF_Bairro10 = new javax.swing.JTextField();
-        jTF_Numero10 = new javax.swing.JTextField();
-        jTF_RG10 = new javax.swing.JFormattedTextField();
+        jTF_Nome = new javax.swing.JTextField();
+        jTF_Marca = new javax.swing.JTextField();
+        jTF_Fornecedor = new javax.swing.JTextField();
+        jTF_Quantidade = new javax.swing.JTextField();
+        jTF_Produto = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,7 +61,7 @@ public class CadastrarProduto extends javax.swing.JFrame {
         jLabel6.setText(" E-Wall");
 
         jLabel7.setFont(new java.awt.Font("DejaVu Math TeX Gyre", 1, 18)); // NOI18N
-        jLabel7.setText("CADASTRAR FUNCIONÁRIO");
+        jLabel7.setText("CADASTRAR PRODUTO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,7 +72,7 @@ public class CadastrarProduto extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jLabel7)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,10 +87,25 @@ public class CadastrarProduto extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(1, 62, 254));
 
         jButton31.setText("Limpar");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
 
         jButton32.setText("Cadastar");
+        jButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton32ActionPerformed(evt);
+            }
+        });
 
-        jButton33.setText("Cancelar");
+        jButton33.setText("sair");
+        jButton33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton33ActionPerformed(evt);
+            }
+        });
 
         jLabel105.setText("Nome do Produto");
 
@@ -107,35 +129,34 @@ public class CadastrarProduto extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
                                 .addComponent(jLabel109)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTF_RG10))
+                                .addComponent(jTF_Produto))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
                                 .addComponent(jLabel105)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTF_Nome10, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTF_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(9, 9, 9)
                         .addComponent(jLabel111))
                     .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
                             .addComponent(jLabel108)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTF_Bairro10))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
-                            .addComponent(jLabel113)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTF_Numero10))
+                            .addComponent(jTF_Fornecedor))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
                             .addComponent(jLabel106)
                             .addGap(18, 18, 18)
-                            .addComponent(jTF_Rua10, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
-                .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton33)
-                .addGap(73, 73, 73))
+                            .addComponent(jTF_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
+                            .addComponent(jLabel113)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel12Layout.createSequentialGroup()
+                                    .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTF_Quantidade)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,30 +164,30 @@ public class CadastrarProduto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel105)
-                    .addComponent(jTF_Nome10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTF_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel111)
                     .addComponent(jLabel109)
-                    .addComponent(jTF_RG10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTF_Produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTF_Rua10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTF_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel106))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel108)
-                    .addComponent(jTF_Bairro10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTF_Fornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel113)
-                    .addComponent(jTF_Numero10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(jTF_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton31)
                     .addComponent(jButton32)
+                    .addComponent(jButton31)
                     .addComponent(jButton33))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,6 +207,69 @@ public class CadastrarProduto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+        
+        String nome = jTF_Nome.getText();
+        String produto = jTF_Produto.getText(); 
+        String marca = jTF_Marca.getText();
+        String fornecedor = jTF_Fornecedor.getText();
+        String quantidade = jTF_Quantidade.getText();
+        
+        System.out.println(""+nome);
+        System.out.println(""+produto);
+        System.out.println(""+marca);
+        System.out.println(""+fornecedor);
+        System.out.println(""+quantidade);
+      
+        if (nome.equals("") || produto.equals("") || marca.equals("") 
+                || fornecedor.equals("") || quantidade.equals("")) {
+
+            JOptionPane.showMessageDialog(null,"nenhum campo pode estar vazio", 
+        "E-Wall", JOptionPane.WARNING_MESSAGE);
+
+        }else{
+            Connection con = Conexao.AbrirConexao();
+            ProdutoDAO sql = new ProdutoDAO(con);
+            int n = Integer.parseInt(quantidade);
+            Produto a = new Produto();
+                
+            a.setNome(nome);
+            a.setProduto(produto);
+            a.setMarca(marca);
+            a.setFornecedor(fornecedor);
+            a.setQuantidade(n);
+                
+            sql.Inserir_Produto(a);
+            Conexao.FecharConexao(con);
+
+            jTF_Nome.setText("");
+            jTF_Produto.setText("");
+            jTF_Marca.setText("");
+            jTF_Fornecedor.setText("");
+            jTF_Quantidade.setText("");
+                
+            JOptionPane.showMessageDialog(null,"cadastro realizado com sucesso", "E-Wall",
+            JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+                
+        };
+        
+    }//GEN-LAST:event_jButton32ActionPerformed
+
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+        
+         dispose();
+    }//GEN-LAST:event_jButton33ActionPerformed
+
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+                jTF_Nome.setText("");
+                jTF_Produto.setText("");
+                jTF_Marca.setText("");
+                jTF_Fornecedor.setText("");
+                jTF_Quantidade.setText("");
+                
+    }//GEN-LAST:event_jButton31ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,263 +307,23 @@ public class CadastrarProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel100;
-    private javax.swing.JLabel jLabel101;
-    private javax.swing.JLabel jLabel102;
-    private javax.swing.JLabel jLabel103;
-    private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel108;
     private javax.swing.JLabel jLabel109;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel111;
     private javax.swing.JLabel jLabel113;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
-    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel70;
-    private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
-    private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
-    private javax.swing.JLabel jLabel77;
-    private javax.swing.JLabel jLabel78;
-    private javax.swing.JLabel jLabel79;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel80;
-    private javax.swing.JLabel jLabel81;
-    private javax.swing.JLabel jLabel82;
-    private javax.swing.JLabel jLabel83;
-    private javax.swing.JLabel jLabel84;
-    private javax.swing.JLabel jLabel85;
-    private javax.swing.JLabel jLabel86;
-    private javax.swing.JLabel jLabel87;
-    private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel90;
-    private javax.swing.JLabel jLabel91;
-    private javax.swing.JLabel jLabel92;
-    private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
-    private javax.swing.JLabel jLabel95;
-    private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
-    private javax.swing.JLabel jLabel98;
-    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTF_Bairro;
-    private javax.swing.JTextField jTF_Bairro1;
-    private javax.swing.JTextField jTF_Bairro10;
-    private javax.swing.JTextField jTF_Bairro2;
-    private javax.swing.JTextField jTF_Bairro3;
-    private javax.swing.JTextField jTF_Bairro4;
-    private javax.swing.JTextField jTF_Bairro5;
-    private javax.swing.JTextField jTF_Bairro6;
-    private javax.swing.JTextField jTF_Bairro7;
-    private javax.swing.JTextField jTF_Bairro8;
-    private javax.swing.JTextField jTF_Bairro9;
-    private javax.swing.JFormattedTextField jTF_CEP;
-    private javax.swing.JFormattedTextField jTF_CEP1;
-    private javax.swing.JFormattedTextField jTF_CEP2;
-    private javax.swing.JFormattedTextField jTF_CEP3;
-    private javax.swing.JFormattedTextField jTF_CEP4;
-    private javax.swing.JFormattedTextField jTF_CEP5;
-    private javax.swing.JFormattedTextField jTF_CEP6;
-    private javax.swing.JFormattedTextField jTF_CEP7;
-    private javax.swing.JFormattedTextField jTF_CEP8;
-    private javax.swing.JFormattedTextField jTF_CEP9;
-    private javax.swing.JTextField jTF_Email;
-    private javax.swing.JTextField jTF_Email1;
-    private javax.swing.JTextField jTF_Email2;
-    private javax.swing.JTextField jTF_Email3;
-    private javax.swing.JTextField jTF_Email4;
-    private javax.swing.JTextField jTF_Email5;
-    private javax.swing.JTextField jTF_Email6;
-    private javax.swing.JTextField jTF_Email7;
-    private javax.swing.JTextField jTF_Email8;
-    private javax.swing.JTextField jTF_Email9;
-    private javax.swing.JFormattedTextField jTF_Nascimento;
-    private javax.swing.JFormattedTextField jTF_Nascimento1;
-    private javax.swing.JFormattedTextField jTF_Nascimento2;
-    private javax.swing.JFormattedTextField jTF_Nascimento3;
-    private javax.swing.JFormattedTextField jTF_Nascimento4;
-    private javax.swing.JFormattedTextField jTF_Nascimento5;
-    private javax.swing.JFormattedTextField jTF_Nascimento6;
-    private javax.swing.JFormattedTextField jTF_Nascimento7;
-    private javax.swing.JFormattedTextField jTF_Nascimento8;
-    private javax.swing.JFormattedTextField jTF_Nascimento9;
+    private javax.swing.JTextField jTF_Fornecedor;
+    private javax.swing.JTextField jTF_Marca;
     private javax.swing.JTextField jTF_Nome;
-    private javax.swing.JTextField jTF_Nome1;
-    private javax.swing.JTextField jTF_Nome10;
-    private javax.swing.JTextField jTF_Nome2;
-    private javax.swing.JTextField jTF_Nome3;
-    private javax.swing.JTextField jTF_Nome4;
-    private javax.swing.JTextField jTF_Nome5;
-    private javax.swing.JTextField jTF_Nome6;
-    private javax.swing.JTextField jTF_Nome7;
-    private javax.swing.JTextField jTF_Nome8;
-    private javax.swing.JTextField jTF_Nome9;
-    private javax.swing.JTextField jTF_Numero;
-    private javax.swing.JTextField jTF_Numero1;
-    private javax.swing.JTextField jTF_Numero10;
-    private javax.swing.JTextField jTF_Numero2;
-    private javax.swing.JTextField jTF_Numero3;
-    private javax.swing.JTextField jTF_Numero4;
-    private javax.swing.JTextField jTF_Numero5;
-    private javax.swing.JTextField jTF_Numero6;
-    private javax.swing.JTextField jTF_Numero7;
-    private javax.swing.JTextField jTF_Numero8;
-    private javax.swing.JTextField jTF_Numero9;
-    private javax.swing.JFormattedTextField jTF_RG;
-    private javax.swing.JFormattedTextField jTF_RG1;
-    private javax.swing.JFormattedTextField jTF_RG10;
-    private javax.swing.JFormattedTextField jTF_RG2;
-    private javax.swing.JFormattedTextField jTF_RG3;
-    private javax.swing.JFormattedTextField jTF_RG4;
-    private javax.swing.JFormattedTextField jTF_RG5;
-    private javax.swing.JFormattedTextField jTF_RG6;
-    private javax.swing.JFormattedTextField jTF_RG7;
-    private javax.swing.JFormattedTextField jTF_RG8;
-    private javax.swing.JFormattedTextField jTF_RG9;
-    private javax.swing.JTextField jTF_Rua;
-    private javax.swing.JTextField jTF_Rua1;
-    private javax.swing.JTextField jTF_Rua10;
-    private javax.swing.JTextField jTF_Rua2;
-    private javax.swing.JTextField jTF_Rua3;
-    private javax.swing.JTextField jTF_Rua4;
-    private javax.swing.JTextField jTF_Rua5;
-    private javax.swing.JTextField jTF_Rua6;
-    private javax.swing.JTextField jTF_Rua7;
-    private javax.swing.JTextField jTF_Rua8;
-    private javax.swing.JTextField jTF_Rua9;
-    private javax.swing.JFormattedTextField jTF_Telefone;
-    private javax.swing.JFormattedTextField jTF_Telefone1;
-    private javax.swing.JFormattedTextField jTF_Telefone2;
-    private javax.swing.JFormattedTextField jTF_Telefone3;
-    private javax.swing.JFormattedTextField jTF_Telefone4;
-    private javax.swing.JFormattedTextField jTF_Telefone5;
-    private javax.swing.JFormattedTextField jTF_Telefone6;
-    private javax.swing.JFormattedTextField jTF_Telefone7;
-    private javax.swing.JFormattedTextField jTF_Telefone8;
-    private javax.swing.JFormattedTextField jTF_Telefone9;
-    private javax.swing.JFormattedTextField tfCPF;
-    private javax.swing.JFormattedTextField tfCPF1;
-    private javax.swing.JFormattedTextField tfCPF2;
-    private javax.swing.JFormattedTextField tfCPF3;
-    private javax.swing.JFormattedTextField tfCPF4;
-    private javax.swing.JFormattedTextField tfCPF5;
-    private javax.swing.JFormattedTextField tfCPF6;
-    private javax.swing.JFormattedTextField tfCPF7;
-    private javax.swing.JFormattedTextField tfCPF8;
-    private javax.swing.JFormattedTextField tfCPF9;
+    private javax.swing.JFormattedTextField jTF_Produto;
+    private javax.swing.JTextField jTF_Quantidade;
     // End of variables declaration//GEN-END:variables
 }

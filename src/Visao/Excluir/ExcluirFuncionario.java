@@ -5,6 +5,15 @@
  */
 package Visao.Excluir;
 
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import Modelo.Funcionario;
+import Principal.Menu;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aluno
@@ -18,6 +27,20 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
         initComponents();
         setSize(482, 256);
         setLocationRelativeTo(this);
+        AtualizaCombo();
+    }
+     private void AtualizaCombo(){
+    Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        List<Funcionario> lista = new ArrayList<>();
+        lista = sql.ListarComboFuncionario();
+        nome.addItem("");
+        
+        for (Funcionario b : lista) {
+          
+         nome.addItem(b.getNome());
+        }
+      Conexao.FecharConexao(con);
     }
 
     /**
@@ -33,9 +56,9 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        codi = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        nome = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -73,15 +96,19 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(1, 62, 254));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        codi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                codiActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Nome");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(30, 175, 14));
         jButton1.setText("Deletar");
@@ -91,7 +118,12 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
+        jButton2.setText("Sair");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -103,14 +135,14 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(codi, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(jButton1)
                         .addGap(108, 108, 108)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -119,8 +151,8 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(codi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -149,13 +181,55 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void codiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_codiActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       String Codigo = codi.getText();
+                String Nome = nome.getSelectedItem().toString();
+                
+                Connection con = Conexao.AbrirConexao();
+                FuncionarioDAO sql = new  FuncionarioDAO(con);
+                Funcionario a = new  Funcionario();
+                if (Nome.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Nenhum nome Selecionado", 
+                            "E-Wall", JOptionPane.WARNING_MESSAGE); 
+                }else{
+                    int b = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir"  
+                   +"\n ("+Codigo+")("+Nome+")","E-Wall",
+                   JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+           
+                     if (b == 0) {
+                         int cod = Integer.parseInt(Codigo);
+                         a.setCodigo(cod);
+                         a.setNome(Nome);
+                         sql.Excluir_Funcionario(a);
+                         Conexao.FecharConexao(con);
+                         dispose();
+                     }
+                 }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+     
+         dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
+        Connection con = Conexao.AbrirConexao();
+       FuncionarioDAO sql = new FuncionarioDAO(con);
+        List<Funcionario> lista = new ArrayList<>();
+        String nom = nome.getSelectedItem().toString();
+        
+        lista = sql.ConsultaCodigoFuncionario(nom);
+        
+        for (Funcionario b : lista) {
+            int a = b.getCodigo();
+            codi.setText(""+a);
+        }
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_nomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,14 +270,14 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField codi;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> nome;
     // End of variables declaration//GEN-END:variables
 }
